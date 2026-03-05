@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "outDir": "./webview-dist",
+    "lib": ["ES2020", "DOM"]
+  },
+  "include": ["src/webview/**/*.ts"]
+}

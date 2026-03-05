@@ -1,0 +1,92 @@
+{
+  "name": "s501s-train-view",
+  "displayName": "Train View",
+  "description": "A pixel art train window view for VS Code — scrolling landscapes, biomes, weather, and time of day",
+  "version": "0.1.0",
+  "publisher": "s501s",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onView:train-view"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "train-view-container",
+          "title": "Train View",
+          "icon": "media/train-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "train-view-container": [
+        {
+          "type": "webview",
+          "id": "train-view",
+          "name": "Train Window"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "train-view.focus",
+        "title": "Focus Train View",
+        "category": "Train View"
+      },
+      {
+        "command": "train-view.reload",
+        "title": "Reload Train View",
+        "category": "Train View"
+      }
+    ],
+    "configuration": {
+      "title": "Train View",
+      "properties": {
+        "train-view.speed": {
+          "type": "string",
+          "enum": ["slow", "normal", "fast"],
+          "default": "normal",
+          "description": "Speed of the train"
+        },
+        "train-view.biome": {
+          "type": "string",
+          "enum": ["auto", "forest", "field", "city", "mountains", "tundra"],
+          "default": "auto",
+          "description": "Landscape biome (auto = cycles automatically)"
+        },
+        "train-view.timeOfDay": {
+          "type": "string",
+          "enum": ["auto", "day", "sunset", "night"],
+          "default": "auto",
+          "description": "Time of day (auto = cycles automatically)"
+        },
+        "train-view.weather": {
+          "type": "string",
+          "enum": ["auto", "clear", "rain", "snow", "fog"],
+          "default": "auto",
+          "description": "Weather condition (auto = changes randomly)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "npm run build:ext && npm run build:webview",
+    "build:ext": "webpack --config webpack.config.js --env target=ext",
+    "build:webview": "webpack --config webpack.config.js --env target=webview",
+    "watch": "webpack --config webpack.config.js --watch",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.3.0",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.0"
+  }
+}
