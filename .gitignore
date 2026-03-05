@@ -1,4 +1,27 @@
+# Dependencies
 node_modules/
+
+# Build output
 out/
 webview-dist/
+
+# VS Code Extension package
 *.vsix
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
